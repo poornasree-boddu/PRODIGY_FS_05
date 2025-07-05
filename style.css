@@ -1,0 +1,82 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #f2f2f2;
+}
+header {
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+nav a, .notif-bell {
+  margin-left: 10px;
+}
+.new-post {
+  background: #fff;
+  padding: 15px;
+  margin: 10px;
+}
+.post {
+  background: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+}
+.post img, .post video {
+  max-width: 100%;
+  border-radius: 10px;
+}
+.actions button {
+  margin-right: 10px;
+}
+.trending {
+  margin: 10px;
+  padding: 10px;
+  background: #fff;
+}
+.trending span {
+  margin-right: 10px;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+.comments {
+  margin-top: 10px;
+}
+.login-box {
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+.notif-bell {
+  cursor: pointer;
+  font-size: 20px;
+}
+.notif-box {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  background: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  max-width: 200px;
+  border-radius: 10px;
+}
+body.dark {
+  background: #1e1e1e;
+  color: #fff;
+}
+body.dark header, body.dark .new-post, body.dark .post, body.dark .trending {
+  background: #2c2c2c;
+}
+.search-bar {
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+}

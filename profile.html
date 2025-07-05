@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Profile - MySocial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>My Profile</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <button onclick="toggleTheme()">🌓 Theme</button>
+  <a href="index.html">Home</a>
+  <button onclick="toggleTheme()">🌓 Theme</button>
+  <button onclick="logoutUser()">🚪 Logout</button>
+
+    </nav>
+  </header>
+
+  <section class="profile-info">
+    <h2 id="profile-name"></h2>
+    <p><b>Followers:</b> <span id="follower-count">0</span></p>
+    <button onclick="toggleFollow()">Follow/Unfollow</button>
+  </section>
+
+  <section id="my-posts"></section>
+
+  <script src="db.js"></script>
+  <script>
+    const user = localStorage.getItem("currentUser");
+    document.getElementById("profile-name").innerText = user;
+
+    const followers = JSON.parse(localStorage.getItem("followers") || "{}");
+    const isFollowing = followers[user]?.includes(user);
+    document.getElementById("follower-count").innerText = followers[user]?.length || 0;
+
+    function toggleFollow() {
+      const followers = JSON.parse(localStorage.getItem("followers") || "{}");
+      followers[user] = followers[user] || [];
+      if (followers[user].includes(user)) {
+        followers[user] = followers[user].filter(f => f !== user);
+      } else {
+        followers[user].push(user);
+      }
+      localStorage.setItem("followers", JSON.stringify(followers));
+      location.reload();
+    }
+
+    function loadMyPosts() {
+      const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+      const section = document.getElementById("my-posts");
+      section.innerHTML = "";
+      posts.filter(p => p.user === user).forEach(post => {
+        const div = document.createElement("div");
+        div.className = "post";
+        loadMedia(post.mediaID, url => {
+          div.innerHTML = `
+            ${post.mediaType === 'video' ? `<video src="${url}" controls></video>` : `<img src="${url}" />`}
+            <p>${post.caption}</p>
+          `;
+          section.appendChild(div);
+        });
+      });
+    }
+    loadMyPosts();
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  </script>
+</body>
+</html>

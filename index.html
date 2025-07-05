@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MySocial App</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="libs/gsap.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>MySocial</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <span class="notif-bell" onclick="showNotifications()">🔔</span>
+  <a href="index.html">Home</a>
+  <a href="profile.html">Profile</a>
+  <button onclick="logoutUser()">🚪 Logout</button>
+
+
+    </nav>
+  </header>
+<body onload="applyTheme()">
+
+  <div id="notifications" class="notif-box"></div>
+
+  <section class="new-post">
+    <input type="file" id="mediaUpload" accept="image/*,video/*" />
+    <input type="text" id="caption" placeholder="Write a caption... #tags" />
+    <button onclick="createPost()">Post</button>
+  </section>
+
+  <section class="trending">
+    <h3>Trending Tags</h3>
+    <div id="trending-tags"></div>
+  </section>
+<section class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search posts or #tags" oninput="searchPosts()" />
+</section>
+
+  <section id="feed"></section>
+
+  <script src="db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
